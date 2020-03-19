@@ -1,0 +1,11 @@
+{
+  "name": "GraphQLNodeNewsDemo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/LeventLei/GraphQLNodeNewsDemo.git",
+  "author": "LeventLei <443706199@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3"
+  }
+}
