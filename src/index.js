@@ -1,23 +1,26 @@
+const { prisma } = require('./generated/prisma-client') // 引入prisma客户端实例
 const { GraphQLServer } = require('graphql-yoga')
+const Query = require('./resolves/Query')
+const Mutation = require('./resolves/Mutation')
+const User = require('./resolves/User')
+const Link = require('./resolves/Link')
 
-//1
-const typeDefs = `
-type Query {
-  info: String!
-}
-`
-
-// 2
 const resolvers = {
-	Query: {
-		info: () => `This is the API of a Hackernews Clone`
-	}
+	Query,
+	Mutation,
+	User,
+	Link
 }
 
-// 3
 const server = new GraphQLServer({
-	typeDefs,
-	resolvers
+	typeDefs: './src/schema.graphql',
+	resolvers,
+	context: request => {
+		return {
+			...request,
+			prisma
+		}
+	}
 })
 
 server.start(() => console.log(`Server is running on http://localhost:4000`))
